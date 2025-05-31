@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
-const API='http://localhost:3000' ;
+const API='https://fdp.onrender.com' ;
 
 
 const Todos = () => {
