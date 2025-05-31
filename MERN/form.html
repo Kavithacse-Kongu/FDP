@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form with JavaScript Validation</title>
+</head>
+<body>
+
+  <h2>Registration Form</h2>
+
+  <form id="registrationForm">
+    <!-- Full Name -->
+    <label for="name">Full Name:</label><br>
+    <input type="text" id="name" name="name"><br><br>
+
+    <!-- Email -->
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br><br>
+
+    <!-- Password -->
+    <label for="password">Password (min 6 characters):</label><br>
+    <input type="password" id="password" name="password"><br><br>
+
+    <!-- Age -->
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="age"><br><br>
+
+    <!-- Gender -->
+    <label>Gender:</label><br>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br><br>
+
+    <!-- Terms -->
+    <input type="checkbox" id="terms" name="terms">
+    <label for="terms">I agree to the terms and conditions</label><br><br>
+
+    <!-- Submit -->
+    <input type="submit" value="Register">
+  </form>
+
+  <script>
+    document.getElementById("registrationForm").addEventListener("submit", function(event) {
+      // Prevent form from submitting
+      event.preventDefault();
+
+      // Get form values
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const age = document.getElementById("age").value;
+      const genderSelected = document.querySelector('input[name="gender"]:checked');
+      const termsChecked = document.getElementById("terms").checked;
+
+      // Validate
+      if (name === "") {
+        alert("Please enter your full name.");
+        return;
+      }
+
+      if (email === "") {
+        alert("Please enter your email.");
+        return;
+      }
+
+      if (!email.includes("@") || !email.includes(".")) {
+        alert("Please enter a valid email.");
+        return;
+      }
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters.");
+        return;
+      }
+
+      if (age === "" || parseInt(age) < 1) {
+        alert("Please enter a valid age.");
+        return;
+      }
+
+      if (!genderSelected) {
+        alert("Please select your gender.");
+        return;
+      }
+
+      if (!termsChecked) {
+        alert("You must agree to the terms and conditions.");
+        return;
+      }
+
+      // If all validations pass
+      alert("Form submitted successfully!");
+      // You can replace this with actual form submission:
+      // this.submit();
+    });
+  </script>
+
+</body>
+</html>
